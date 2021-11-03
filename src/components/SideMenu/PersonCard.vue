@@ -8,14 +8,21 @@
         </div>
         <div class="person__info">
             <div class="person__info-name">
-                <b>{{ person.name }} ({{ person.age }})</b>
+                <strong>{{ person.name }} ({{ person.age }})</strong>
             </div>
 
-            <div class="person__info-email">Почта: {{ person.email }}</div>
             <div class="person__info-email">
-                Дата регистрации: {{ formatedDate }}
+                <strong>Почта</strong>: 
+                {{ person.email }}
             </div>
-            <div class="person__info-about">О себе: {{ person.about }}</div>
+            <div class="person__info-email">
+                <strong>Дата регистрации</strong>: 
+                {{ formatedDate }}
+            </div>
+            <div class="person__info-about">
+                <strong>О себе</strong>: 
+                {{ person.about }}
+            </div>
         </div>
     </div>
 </template>
