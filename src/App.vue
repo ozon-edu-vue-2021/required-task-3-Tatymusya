@@ -1,88 +1,22 @@
 <template>
     <div id="app">
         <div class="office">
-            <Map 
-                @clickTable="onClickTable" 
-                @clickOutsideTable="onClickOutsideTable"
-                :tables="tables"
-                :groups="groups"
-            />
-            <SideMenu 
-                :is-user-openned.sync="isUserOpenned"
-                :person="person" 
-            />
+            <Map />
+            <SideMenu />
         </div>
-        <Form 
-            v-if="freeTablesLeft > 0"
-            :groups="groups" 
-            @submit="onSubmit" 
-        />
     </div>
 </template>
 
 <script>
-import Map from './components/Map.vue';
-import SideMenu from './components/SideMenu.vue';
-import people from '@/assets/data/people.json';
-import legend from '@/assets/data/legend.json';
-import tables from '@/assets/data/tables.json';
-import Form from '@/components/Form/Form.vue';
+import Map from "./components/Map.vue";
+import SideMenu from "./components/SideMenu.vue";
 
 export default {
-    name: 'App',
-    components: {
-        Map,
-        SideMenu,
-        Form,
-    },
-    data() {
-        return {
-            person: {},
-            isUserOpenned: false,
-            groups: legend,
-            people,
-            tables,
-            coordsFreeTables: [{
-                x: 44,
-                y: 13
-            },
-            {
-                x: 90,
-                y: 37
-            }],
-            freeTablesLeft: 2,
-        }
-    },
-    methods: {
-        onClickTable(id) {
-            this.isUserOpenned = true;
-            this.person = people.find((val) => val.tableId === id);
-        },
-        onClickOutsideTable() {
-            this.isUserOpenned = false;
-        },
-        onSubmit({ user, userGroup }) {
-            this.freeTablesLeft = this.freeTablesLeft - 1;
-            const {x, y} = this.coordsFreeTables[this.freeTablesLeft];
-            const userId = this.people.length + 1;
-            const tableId = this.tables.length + 1;
-
-            this.people.push({
-                ...user,
-                _id: userId,
-                tableId
-
-            });
-            
-            this.tables.push({
-                '_id': tableId,
-                'x': x,
-                'y': y,
-                'group_id': userGroup,
-                'rotate': 80
-            })
-        }
-    }
+  name: "App",
+  components: {
+    Map,
+    SideMenu,
+  },
 };
 </script>
 
